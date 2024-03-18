@@ -1,7 +1,6 @@
 import { Text, ImageResolvable, ColorResolvable } from '@discord-card/core';
 import { themes } from './lib';
 type mimeType = 'image/png' | 'image/jpeg' | 'application/pdf' | 'raw';
-
 export type CardOptions = {
   /** Select a theme with some default options */
   theme?: keyof typeof themes;
@@ -9,7 +8,7 @@ export type CardOptions = {
   text?: {
     /** Text in the Top */
     title?: string | Text;
-    /**Text in the middle(big) */
+    /** Text in the middle (big) */
     text?: string | Text;
     /** Text on the bottom */
     subtitle?: string | Text;
@@ -17,6 +16,8 @@ export type CardOptions = {
     color?: ColorResolvable;
     /** Custom Font */
     font?: string;
+    /** Text alignment */
+    align?: TextAlign; // Assuming TextAlign is defined in your types
   };
   /** Options for the avatar */
   avatar?: {
@@ -35,6 +36,8 @@ export type CardOptions = {
      *  of the canvas, so 1.0 fills the entire height
      *  @default 0.8 */
     imageRadius?: number;
+    /** Avatar alignment */
+    align?: 'left' | 'center' | 'right'; // You can extend this as needed
   };
   card?: {
     /** Override the Background, can be a URL/Canvas/Image or Buffer  */
