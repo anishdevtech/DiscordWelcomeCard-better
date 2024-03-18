@@ -1,8 +1,7 @@
 import { Timer, toImage, roundRect, changeFontSize, getFontSize } from '@discord-card/core';
 import { createCanvas } from 'canvas';
 import { themes, snap } from '../lib';
-import { CardOptions } from '../types';
-import { staticCard } from './dry';
+import { CardOptions, TextAlign } from '../types'; // Assuming you have a TextAlign enum defined
 
 const w = 700,
   h = 250;
@@ -45,6 +44,13 @@ export async function drawCard(options: CardOptions): Promise<Buffer> {
   ctx.fillStyle = (options.text?.color ?? theme.color).toString(ctx);
   //ctx.strokeStyle = theme.color.toString(ctx);
   ctx.font = '30px ' + (options.text?.font ?? theme.font ?? 'SegoeUI') + ', SegoeUI, SegoeUIEmoji';
+
+  // Apply text alignment
+  const textAlign: TextAlign = options.text?.align ?? 'left'; // Default to 'left' if not provided
+  ctx.textAlign = textAlign;
+
+  // Apply text color
+  ctx.fillStyle = options.text?.color ?? theme.color;
 
   //Drawing
   //Title
